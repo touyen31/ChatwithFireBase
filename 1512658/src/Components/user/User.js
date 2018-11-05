@@ -14,7 +14,38 @@ class User extends Component{
 
     }
 
-    
+    calc = time => {
+        let sub = moment() - moment(time);
+        let minus = Math.round(sub / 60000);
+        let hour = Math.round(minus / 60);
+        if(minus < 1){
+            return 'offline';
+        }
+        if(hour < 1)
+            return `left ${minus} min ago`
+        else
+            return `left ${hour} hours ago`
+    }
+
+    calcTimeOut = time => setInterval(() => {
+        this.calc(time);
+    }, 60000)
+
+    componentWillReceiveProps(props){
+        if(props.info.online === false && props.info.time !== this.state.time){
+            clearInterval(this.calcTimeOut);
+            this.setState({message: this.calc(props.info.time), time: props.info.time}, () => this.calcTimeOut(props.info.time))
+        }
+    }
+    componentDidMount(){
+        if(this.props.info.online === false){
+            this.setState({message: this.calc(this.props.info.time), time: this.props.info.time}, () => this.calcTimeOut(this.props.info.time))
+        }
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.calcTimeOut);
+    }
 
     render(){
         let {info, click, Sender, Receiver} = this.props;
