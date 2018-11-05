@@ -1,0 +1,64 @@
+.container{
+    margin: 0 auto;
+    width: 750px;
+    background: #444753;
+    border-radius: 5px;
+}
+
+.people-list {
+    width: 260px;
+    float: left;
+    background-color: gray;
+}
+.search {
+    padding: 20px;
+}
+
+.people-list ul {
+    padding: 20px;
+    height: calc(100vh - 116px);
+}
+
+ul{
+    list-style: none;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.people-list ul li {
+    padding-bottom: 20px;
+}
+
+.people-list img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.people-list input {
+    border-radius: 3px;
+    border: none;
+    padding: 14px;
+    color: white;
+    background: #6A6C75;
+    width: 90%;
+    font-size: 14px;
+}
+
+.people-list .fa-search {
+    position: relative;
+    left: -25px;
+}
+
+.chat {
+    width: 490px;
+    float: left;
+    background: #F2F5F8;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: red;
+    height: 100vh;
+}
