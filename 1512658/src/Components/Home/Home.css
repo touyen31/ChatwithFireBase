@@ -1,17 +1,17 @@
 .container{
     margin: 0 auto;
     width: 750px;
-    background: #444753;
     border-radius: 5px;
 }
 
 .people-list {
     width: 260px;
     float: left;
-    background-color: gray;
+    background-color:#F8F8FF;
 }
 .search {
     padding: 20px;
+
 }
 
 .people-list ul {
@@ -40,10 +40,10 @@ ul{
 
 .people-list input {
     border-radius: 3px;
-    border: none;
+    border-color: #F5F5F5;
+    border-width: 1px;
     padding: 14px;
-    color: white;
-    background: #6A6C75;
+    color: black;
     width: 90%;
     font-size: 14px;
 }

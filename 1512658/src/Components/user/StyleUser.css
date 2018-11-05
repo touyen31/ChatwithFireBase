@@ -16,8 +16,16 @@
 
 .status .online {
     color: green;
+    margin-left: 7px;
 }
 
 .status .offline {
     color: orange;
+    margin-left: 7px;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #D8DADF;
+    margin-bottom: 5px;
 }
