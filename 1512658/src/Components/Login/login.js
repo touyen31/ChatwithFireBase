@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import GoogleButton from 'react-google-button'
-import {auth, googleProvider} from "../Firebase/FirebaseConfig";
+import {compose} from 'redux'
+import {withFirebase} from 'react-redux-firebase'
 
 class Login extends Component{
     render(){
         return(
-            <GoogleButton onClick={() => {auth.signInWithPopup(googleProvider) }}>
+            <GoogleButton onClick={() => {this._login()}}>
             </GoogleButton>
         );
     }
+    _login(){
+        this.props.firebase.login({
+            provider: 'google',
+            type: 'popup'
+        }).then(res => this.props.history.push('/'))
+            .catch(err => console.log((err)))
+    }
 }
-export default Login
+
+export default compose(
+    withFirebase,
+)(Login);
 
 
 

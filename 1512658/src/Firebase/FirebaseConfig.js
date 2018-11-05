@@ -7,7 +7,5 @@ var config = {
     storageBucket: "chatfirebase-c235f.appspot.com",
     messagingSenderId: "238472280389"
 };
-export const FirebaseApp = firebase.initializeApp(config);
-export const database = firebase.database().ref('posts/');
-export const auth = firebase.auth();
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
+const FirebaseApp = firebase.initializeApp(config);
+export  default  FirebaseApp;
