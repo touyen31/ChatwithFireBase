@@ -5,6 +5,8 @@ import Home from './Components/Home/Home'
 import {BrowserRouter,Route, Switch}from 'react-router-dom'
 
 import firebase from 'firebase'
+import UnAuthComponent from "./Components/UnAuthComponent";
+import AuthComponent from "./Components/AuthComponent";
 
 const watchUserState = () =>{
     firebase.auth().onAuthStateChanged(user => {
@@ -33,8 +35,8 @@ class App extends Component {
     return (
        <BrowserRouter>
          <Switch>
-           <Route path='/login' exact={true} render={prop => <Login {...prop}/>}/>
-             <Route path='/' exact={true} render={prop => <Home {...prop}/>}/>
+          <UnAuthComponent path={'/login'} exact={true} component={Login}/>
+             <AuthComponent path={'/'} exat={true} component={Home}/>
          </Switch>
        </BrowserRouter>
     );
