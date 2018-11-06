@@ -7,7 +7,7 @@
 .people-list {
     width: 260px;
     float: left;
-    background-color:#F8F8FF;
+    background-color:#6EC3C9;
 }
 .search {
     padding: 20px;
@@ -56,9 +56,8 @@ ul{
 .chat {
     width: 490px;
     float: left;
-    background: #F2F5F8;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    background-color: red;
+    background-color: #F8F8FF;
     height: 100vh;
 }

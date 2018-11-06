@@ -48,10 +48,11 @@ class User extends Component{
     }
 
     render(){
-        let {info, click, Sender, Receiver} = this.props;
+        let {info, click, Sender, Receiver, index} = this.props;
+        console.log(info)
         return(
-            <div>
-                <li className="clearfix" onClick={() => click(Sender, Receiver)}>
+            <Fragment>
+                <li className="clearfix" onClick={() => click(Sender, Receiver)} key={index}>
                     <img src={info.avatarUrl} alt="avatar"/>
                     <div className="about">
                         <div className="name">{info.displayName}</div>
@@ -67,7 +68,7 @@ class User extends Component{
 
                 </li>
                 <div className="line"></div>
-            </div>
+            </Fragment>
         );
     }
 }

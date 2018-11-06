@@ -9,6 +9,15 @@
     border-radius: 50%;
 }
 
+.chat-header clearfix{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
 .chat-about {
     float: left;
     padding-left: 10px;
@@ -36,11 +45,11 @@
     padding: 30px 30px 20px;
     border-bottom: 2px solid white;
     overflow-y: scroll;
-    height: 575px;
+    height: 380px;
 }
 
 .chat-message {
-    padding: 30px;
+    padding: 20px;
 }
 .chat-message textarea {
     width: 100%;
@@ -68,5 +77,5 @@
     border: none;
     cursor: pointer;
     font-weight: bold;
-    background: #F2F5F8;
+    background: #99D1D3;
 }

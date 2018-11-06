@@ -51,7 +51,7 @@ class Chat extends Component {
                             <div className={'chat-history'}>
                                 <ul>
                                     {
-                                        list && list.map(item => <ItemChat data={item}/>)
+                                        list && list.map(item => <ItemChat data={item} meuid={this.props.meUid}/>)
                                     }
                                 </ul>
                             </div>
@@ -78,7 +78,7 @@ const makelist = (messages, sendUid, recvUid) => {
     if(!messages) return [];
     list = Object.keys(messages).map(item => messages[item]);
 
-    list = list.filter(item => item.send.uid === sendUid && item.receive.uid === recvUid || item.send.uid === recvUid && item.receive.uid === sendUid)
+    list = list.filter(item => (item.send.uid === sendUid && item.receive.uid === recvUid) || (item.send.uid === recvUid && item.receive.uid === sendUid))
     return list;
 }
 

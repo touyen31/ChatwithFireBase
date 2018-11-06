@@ -10,7 +10,7 @@ class ListUser extends Component{
         return(
            <ul className='list'>
                {
-                  list &&  list.map(item => <User info={item} Sender={this.props.Sender} Receiver={item}/>)
+                  list &&  list.map((item, index) => <User info={item} Sender={this.props.Sender} Receiver={item} key={index}/>)
                }
            </ul>
         );
