@@ -34,13 +34,12 @@
 
 
 
-.fa-star {
+.chat-header .fa-star {
     float: right;
     color: #D8DADF;
     font-size: 20px;
     margin-top: 12px;
 }
-
 .chat-history {
     padding: 30px 30px 20px;
     border-bottom: 2px solid white;
