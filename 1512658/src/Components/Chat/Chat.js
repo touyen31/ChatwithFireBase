@@ -4,21 +4,21 @@ import  './Chat.css'
 import {compose} from 'redux'
 import {firebaseConnect} from 'react-redux-firebase';
 import ItemChat from "./ItemChat";
-import User from "../user/User";
 class Chat extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            message: ''
+            message: '',
+            star: null,
         }
     }
     handleText = e => {
         this.setState({message: e.target.value})
     }
 
-
     handleSubmit= () => {
+
         let _message = {
             send: this.props.sender,
             receive: this.props.receive,
@@ -31,11 +31,29 @@ class Chat extends Component {
         })
     }
 
-    render() {
+    setStar = () => this.props.firebase.database().ref(`/presence/${this.props.receive.uid}/star/${this.props.meUid}`).set(true);
+    setUnStar = () => this.props.firebase.database().ref(`/presence/${this.props.receive.uid}/star/${this.props.meUid}`).set(false);
 
+    componentWillReceiveProps(newProps){
+        if(newProps.receive && newProps.meUid){
+            this.props.firebase.database().ref(`/presence/${newProps.receive.uid}/star/${newProps.meUid}`).on('value', snapshot => {
+                this.setState({star: snapshot.val()})
+            })
+        }
+    }
+
+    sendUrl = (url) => {
+        let _message = {
+            send: this.props.sender,
+            receive: this.props.receive,
+            message: url,
+            time: this.props.firebase.database.ServerValue.TIMESTAMP
+        }
+        this.props.firebase.database().ref('messages').push(_message);
+    }
+    render() {
             if(this.props.receive){
                 var list = makelist(this.props.messages, this.props.sender.uid, this.props.receive.uid)
-                console.log(makelist(this.props.messages, this.props.sender.uid, this.props.receive.uid))
             }
             return (
                 <div className={'chat'}>
@@ -46,7 +64,12 @@ class Chat extends Component {
                                 <div className="chat-about">
                                     <div className="chat-with">Chat with {this.props.receive.displayName}</div>
                                 </div>
-                                <i className="fa fa-star"></i>
+                                {
+                                   this.state.star ?
+                                    <i className="fas fa-star" style={{color: 'yellow'}} onClick={this.setUnStar}></i> : <i className="fas fa-star" onClick={this.setStar}></i>
+
+                                }
+
                             </div>
                             <div className={'chat-history'}>
                                 <ul>
@@ -56,12 +79,8 @@ class Chat extends Component {
                                 </ul>
                             </div>
                             <div className="chat-message clearfix">
-                                <textarea name="message-to-send" id="message-to-send" placeholder="Type your message"
-                                          rows="3" onChange={this.handleText} value={this.state.message}></textarea>
-
-                                <i className="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
-                                <i className="fa fa-file-image-o"></i>
-
+                                    <textarea name="message-to-send" id="message-to-send" placeholder="Type your message"
+                                                                                  rows="3" onChange={this.handleText} value={this.state.message}></textarea>
                                 <button onClick={this.handleSubmit}>Send</button>
 
                             </div>

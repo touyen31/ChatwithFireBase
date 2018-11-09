@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './ItemChat.css'
+import isImageUrl from 'is-image-url'
 
 class ItemChat extends Component {
     _convertTimetoDate(){
@@ -14,7 +15,7 @@ class ItemChat extends Component {
 
                     </div>
                     <div className="message other-message">
-                        {this.props.data.message}
+                        {isImageUrl(this.props.data.message) ? <img src={this.props.data.message} style={{width: 100, height: 100}}/> : this.props.data.message}
                     </div>
                 </li>
         );
