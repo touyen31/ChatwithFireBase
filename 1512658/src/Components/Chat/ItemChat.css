@@ -18,7 +18,7 @@
     font-size: 16px;
     border-radius: 7px;
     margin-bottom: 30px;
-    width: 90%;
+    width: 100%;
     position: relative;
 }
 .my-message {
@@ -26,10 +26,11 @@
 }
 
 .other-message {
-    background: blue;
+    background: #EE7C6B;
 }
 .float-right{
     float: right;
+    margin-right: 5px;
 }
 .float-left{
     float:left;

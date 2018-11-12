@@ -11,7 +11,7 @@ class Chat extends Component {
         super(props);
         this.state = {
             message: '',
-            star: null,
+            star: false,
             picture: false
         }
     }
@@ -35,15 +35,18 @@ class Chat extends Component {
         })
     }
 
-    setStar = () => this.props.firebase.database().ref(`/presence/${this.props.receive.uid}/star/${this.props.meUid}`).set(true);
-    setUnStar = () => this.props.firebase.database().ref(`/presence/${this.props.receive.uid}/star/${this.props.meUid}`).set(false);
+    setStar = () => {
+        this.props.firebase.database().ref(`/star/${this.props.receive.uid}/${this.props.meUid}`).set(true);
+    }
+    setUnStar = () => {
+        this.props.firebase.database().ref(`/star/${this.props.receive.uid}/${this.props.meUid}`).set(false);
+    }
 
     closeUploader = () => this.setState({picture: false})
 
     componentWillReceiveProps(newProps){
         if(newProps.receive && newProps.meUid){
-            this.props.firebase.database().ref(`/presence/${newProps.receive.uid}/star/${newProps.meUid}`).on('value', snapshot => {
-                console.log('snapshot: ', snapshot.val())
+            this.props.firebase.database().ref(`/star/${newProps.receive.uid}/${newProps.meUid}`).on('value', snapshot => {
                 this.setState({star: snapshot.val()})
             })
         }
@@ -62,7 +65,6 @@ class Chat extends Component {
         if(this.props.receive){
             var list = makelist(this.props.messages, this.props.sender.uid, this.props.receive.uid)
         }
-        console.log('star', this.state.star)
         return (
             <div className={'chat'}>
                 {
@@ -73,8 +75,14 @@ class Chat extends Component {
                                 <div className="chat-with">Chat with {this.props.receive.displayName}</div>
                             </div>
                             {
-                                this.state.star ?
-                                    <i className="fas fa-star" style={{color: 'yellow'}} onClick={this.setUnStar()}></i> : <i className="fas fa-star" onClick={this.setStar()}></i>
+                                this.state.star &&
+                                <div onClick={() => this.setUnStar()}><i className="fas fa-star" style={{
+                                    color: 'yellow',
+                                    cursor: 'pointer'
+                                }}></i></div>
+                            }
+                            {
+                                   !this.state.star && <div onClick={() => this.setStar()}><i className="far fa-star"></i></div>
 
                             }
 
