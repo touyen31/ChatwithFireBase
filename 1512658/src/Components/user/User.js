@@ -58,10 +58,10 @@ class User extends Component{
                         <div className="name">{info.displayName}</div>
                         <div className="status">
                             {
-                                info.online &&<Fragment><i className="fa fa-circle online"> online</i> </Fragment>
+                                info.online &&<Fragment><i className="fas fa-circle online"></i>  online</Fragment>
                             }
                             {
-                                !info.online &&<Fragment><i className="fa fa-circle offline"> {this.state.message}</i> </Fragment>
+                                !info.online &&<Fragment><i className="fas fa-circle offline"></i>  {this.state.message} </Fragment>
                             }
                         </div>
                     </div>

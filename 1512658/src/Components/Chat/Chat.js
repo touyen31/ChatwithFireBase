@@ -74,7 +74,7 @@ class Chat extends Component {
                             </div>
                             {
                                 this.state.star ?
-                                    <i className="fas fa-star" style={{color: 'yellow'}} onClick={this.setUnStar}></i> : <i className="fas fa-star" onClick={this.setStar}></i>
+                                    <i className="fas fa-star" style={{color: 'yellow'}} onClick={this.setUnStar()}></i> : <i className="fas fa-star" onClick={this.setStar()}></i>
 
                             }
 
@@ -92,7 +92,7 @@ class Chat extends Component {
                                                                                                                                         rows="3" onChange={this.handleText} value={this.state.message}></textarea>
                             }
 
-                            <div onClick={() => this.setState({picture: true})}>
+                            <div onClick={() => this.setState({picture: !this.state.picture})}>
                                 <i className="far fa-file-image"></i>
 
                             </div>

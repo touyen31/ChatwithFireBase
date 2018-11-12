@@ -7,10 +7,7 @@ class Home extends Component {
         return (
            <div className='container'>
                <div className='people-list'>
-                   <div className="search">
-                       <input type="text" placeholder="search"/>
-                       <i className="fa fa-search"></i>
-                   </div>
+
                    <ListUser/>
                </div>
                <Chat/>
