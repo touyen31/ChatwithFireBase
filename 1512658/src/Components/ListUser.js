@@ -16,14 +16,14 @@ class ListUser extends Component{
     }
 
     render(){
-
-        let list = makeList(this.props.UserInfo, this.props.UserOnlines)
-        if(this.props.star){
+        let list = [];
+        if(this.props.star && this.props.UserOnlines){
+            list = Object.keys(this.props.UserOnlines).map(item => this.props.UserOnlines[item]);
+            list = list.filter(item => item.uid !== this.props.meUid)
             list = list.map(item => ({...item, star: this.props.star[item.uid]}))
-            console.log(list)
         }
         list = list.sort((a,b) => compare(a,b,this.props.meUid))
-
+        console.log(list)
         return(
             <div>
                 <div className="search">
@@ -46,8 +46,6 @@ const handleSearch = (list, inputText)=>{
 }
 
 const compare = (prev,next, me) => {
-    console.log('prev',prev.star)
-    console.log('next',next.star)
     if(prev.star && next.star){
         if(prev.star[me] && next.star[me]) return 0;
         if(prev.star[me] && !next.star[me]) return -1;
@@ -92,7 +90,7 @@ const mapStateToProps = state => {
         UserOnlines: state.firebase.data.presence,
         Sender: {displayName: state.firebase.auth.displayName, email: state.firebase.auth.email, avatarUrl: state.firebase.auth.photoURL, uid: state.firebase.auth.uid },
         meUid: state.firebase.auth.uid,
-        // star:state.firebase.data.star
+        star:state.firebase.data.star
     }
 }
 

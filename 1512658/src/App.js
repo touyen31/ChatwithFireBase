@@ -17,8 +17,8 @@ const watchUserState = () =>{
 
         amOnline.on('value', snapshot => {
             if(snapshot.val()){
-                userRef.onDisconnect().set({uid: user.uid, time: firebase.database.ServerValue.TIMESTAMP, online: false });
-                userRef.set({uid: user.uid, time: firebase.database.ServerValue.TIMESTAMP, online: true })
+                userRef.onDisconnect().set({uid: user.uid, time: firebase.database.ServerValue.TIMESTAMP, online: false, displayName: user.displayName, photoUrl: user.photoURL });
+                userRef.set({uid: user.uid, time: firebase.database.ServerValue.TIMESTAMP, online: true, displayName: user.displayName, photoUrl: user.photoURL })
             }
         })
     })

@@ -7,6 +7,7 @@ class ItemChat extends Component {
         return Intl.DateTimeFormat('vi', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit'}).format(this.props.data.time);
     }
     render() {
+        console.log(this.props.data)
         return (
                 <li className={`${this.props.data.send.uid === this.props.meuid ? 'float-right' : 'float-left'}`}>
                     {this.props.data.send.uid === this.props.meuid ?  <div className="message-data">

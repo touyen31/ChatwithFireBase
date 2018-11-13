@@ -50,9 +50,9 @@ const enhance = compose(
 );
 
 const Uploader = ({ uploadedFiles, onFileDelete, onFilesDrop }) => (
-    <div>
-        <Dropzone onDrop={onFilesDrop}>
-            <div>Drag and drop files here or click to select</div>
+    <div >
+        <Dropzone onDrop={onFilesDrop}  style={{ height: '100px' }} >
+            <div style={{ height: '100px', border:true, backgroundColor:'blue' }}>Drag and drop files here or click to select</div>
         </Dropzone>
         {uploadedFiles && (
             <div>
@@ -72,6 +72,7 @@ Uploader.propTypes = {
     firebase: PropTypes.object.isRequired,
     uploadedFiles: PropTypes.object
 };
+
 
 // Apply enhancer to component on export
 export default enhance(Uploader);

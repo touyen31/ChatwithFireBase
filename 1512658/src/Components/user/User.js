@@ -49,19 +49,18 @@ class User extends Component{
 
     render(){
         let {info, click, Sender, Receiver, index} = this.props;
-        console.log(info)
         return(
             <Fragment>
                 <li className="clearfix" onClick={() => click(Sender, Receiver)} key={index}>
-                    <img src={info.avatarUrl} alt="avatar"/>
+                    <img src={info.photoUrl} alt="avatar"/>
                     <div className="about">
                         <div className="name">{info.displayName}</div>
                         <div className="status">
                             {
-                                info.online &&<Fragment><i className="fas fa-circle online"></i>  online</Fragment>
+                                info.online &&<div><i className="fas fa-circle online"></i>  online</div>
                             }
                             {
-                                !info.online &&<Fragment><i className="fas fa-circle offline"></i>  {this.state.message} </Fragment>
+                                !info.online &&<div><i className="fas fa-circle offline"></i>  {this.state.message} </div>
                             }
                         </div>
                     </div>

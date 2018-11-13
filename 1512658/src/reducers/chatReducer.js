@@ -6,7 +6,6 @@ const init = {
 }
 
 const chatReducer = (state = init, action) => {
-    console.log(action)
     switch (action.type) {
         case 'ADD_SENDER_RECEIVER':
             return {send: action.sender, receive: action.receiver};

@@ -24,12 +24,12 @@ class Chat extends Component {
     handleSubmit= () => {
 
         let _message = {
-            send: this.props.sender,
-            receive: this.props.receive,
+            send: {uid: this.props.sender.uid, displayName: this.props.sender.displayName},
+            receive: {uid: this.props.receive.uid, displayName: this.props.receive.displayName},
             message: this.state.message,
             time: this.props.firebase.database.ServerValue.TIMESTAMP
         }
-        this.props.firebase.database().ref('messages').push(_message);
+        this.props.firebase.database().ref('/messages').push(_message);
         this.setState({
             message: ''
         })
@@ -63,6 +63,7 @@ class Chat extends Component {
     }
     render() {
         if(this.props.receive){
+            console.log(this.props.receive)
             var list = makelist(this.props.messages, this.props.sender.uid, this.props.receive.uid)
         }
         return (
@@ -70,7 +71,7 @@ class Chat extends Component {
                 {
                     this.props.receive && <Fragment>
                         <div className="chat-header clearfix">
-                            <img src={`${this.props.receive.avatarUrl}`}/>
+                            <img src={`${this.props.receive.photoUrl}`}/>
                             <div className="chat-about">
                                 <div className="chat-with">Chat with {this.props.receive.displayName}</div>
                             </div>
@@ -94,7 +95,7 @@ class Chat extends Component {
                                 }
                             </ul>
                         </div>
-                        <div className="chat-message clearfix">
+                        <div className="chat-message">
                             {
                                 this.state.picture ? <Uploader sendUrl={this.sendUrl} closeUploader={this.closeUploader}/> :  <textarea name="message-to-send" id="message-to-send" placeholder="Type your message"
                                                                                                                                         rows="3" onChange={this.handleText} value={this.state.message}></textarea>
